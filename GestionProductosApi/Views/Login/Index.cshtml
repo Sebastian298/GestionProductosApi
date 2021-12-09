@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=39786
+*@
+@{ 
+    Layout = null;
+}
+<link href="~/css/StylesLogin.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-light text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg">
+                            <image href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVXMjfcjtYYUmtc8r0VmD9gtMhxLVQO9u9AQ&usqp=CAU" class="rounded mx-auto d-block" />
+                        </svg>
+                        <form class="row g-3 requires-validation mt-2" novalidate>
+                            <div class="col-md-12">
+                                <label for="code" class="form-label text-dark">COMPANY CODE</label>
+                                <input type="text" class="form-control" id="code" required>
+                                <div class="valid-feedback">
+                                    CORRECTO!
+                                </div>
+                                <div class="invalid-feedback">
+                                    EL COMPANY CODE ES REQUERIDO!
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label text-dark">CORREO</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="valid-feedback">
+                                    CORRECTO!
+                                </div>
+                                <div class="invalid-feedback">
+                                    EL CORREO ES REQUERIDO!
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="password" class="form-label text-dark">CONTRASEÑA</label>
+                                <input type="password" class="form-control" id="password" required>
+                                <div class="valid-feedback">
+                                    CORRECTO!
+                                </div>
+                                <div class="invalid-feedback">
+                                    LA CONTRASEÑA ES REQUERIDA!
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button class="btn btn-outline-primary" style="width: 100%;" type="submit">INICIAR SESIÓN</button>
+                            </div>
+                        </form>
+                        <div class="mt-3">
+                            <a class="mb-0 text-dark">¿AÚN NO TIENES CUENTA?</a>
+                            <button class="btn btn-outline-primary mt-2" style="width: 100%;" type="button">REGISTRATE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.requires-validation')
+        Array.from(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    form.classList.add('was-validated')
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    } else {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        validateCompany(code.value, email.value, password.value);
+                    }
+
+                }, false)
+            })
+    })()
+</script>
+<script src="~/js/login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -5,7 +5,7 @@
 function validateCompany(companyCode, email, password) {
     let companyID
     let objCompany = {
-        CompanyCode: companyCode,
+        Name: companyCode,
         Email: email,
         Password: password
     };
@@ -29,13 +29,7 @@ function validateCompany(companyCode, email, password) {
                     footer: 'Verificar su información'
                 })
             } else {
-                let url = "Dashboard/Index";
-                const options = {
-                    method: "GET"
-                };
-                fetch(url, options).then(data => {
-                    location.replace(data.url);
-                });
+                window.location.href = "/Dashboard/Index";
             }
         })
 }

@@ -24,8 +24,10 @@ namespace GestionProductosApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession();
+            services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
             services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(); //Esto para poder mandar mensajes personalizados con jobjects desde controladores con sus status code
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

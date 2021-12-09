@@ -17,7 +17,6 @@ namespace GestionProductosApi.Controllers
     {
         static HttpClient http = new HttpClient();
         private readonly ILogger<LoginController> _logger;
-        const string SessionCompanyID = "_CompanyID";
         public LoginController(ILogger<LoginController> logger)
         {
             _logger = logger;
@@ -25,14 +24,18 @@ namespace GestionProductosApi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetString("CompanyID") != null)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }else
+                return View();
         }
 
         public IActionResult ValidateLogin([FromBody] Company objCompany)
         {
             var url = "https://localhost:44326/api/companies/Validate";
             dynamic jsonRequest = new JObject();
-            jsonRequest.CompanyCode = objCompany.CompanyCode;
+            jsonRequest.Name = objCompany.Name;
             jsonRequest.Email = objCompany.Email;
             jsonRequest.Password = objCompany.Password;
             var content = new StringContent(jsonRequest.ToString(), Encoding.UTF8, "application/json");
@@ -44,21 +47,23 @@ namespace GestionProductosApi.Controllers
                 var x = resultContent.Content.CompanyID.ToString();
                 string CompanyID = x.ToString();
                 HttpContext.Session.SetString("CompanyID",CompanyID);
+                HttpContext.Session.SetString("CompanyName", objCompany.Name);
                 var y = HttpContext.Session.GetString("CompanyID");
                 return Json(resultContent.ToString());
             }
             else
                 return Json(resultContent.ToString());
         }
-        public IActionResult Privacy()
+
+        [HttpGet]
+        public IActionResult DestroySession()
         {
-            return View();
+            dynamic res = new JObject();
+            res.Url = "../Login/Index";
+            HttpContext.Session.Remove("CompanyID");
+            HttpContext.Session.Remove("CompanyName");
+            return Json(res);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

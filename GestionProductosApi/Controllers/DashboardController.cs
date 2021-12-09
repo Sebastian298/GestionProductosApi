@@ -11,8 +11,15 @@ namespace GestionProductosApi.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["CompanyID"] = HttpContext.Session?.GetString("CompanyID");
-            return View();
+            if (HttpContext.Session.GetString("CompanyID") is null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewData["CompanyID"] = HttpContext.Session?.GetString("CompanyID");
+                return View();
+            }
         }
     }
 }

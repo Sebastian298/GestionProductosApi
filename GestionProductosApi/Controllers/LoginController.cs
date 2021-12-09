@@ -48,7 +48,6 @@ namespace GestionProductosApi.Controllers
                 string CompanyID = x.ToString();
                 HttpContext.Session.SetString("CompanyID",CompanyID);
                 HttpContext.Session.SetString("CompanyName", objCompany.Name);
-                var y = HttpContext.Session.GetString("CompanyID");
                 return Json(resultContent.ToString());
             }
             else
@@ -59,7 +58,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult DestroySession()
         {
             dynamic res = new JObject();
-            res.Url = "../Login/Index";
+            res.Url = "Index";
             HttpContext.Session.Remove("CompanyID");
             HttpContext.Session.Remove("CompanyName");
             return Json(res);

@@ -17,7 +17,7 @@ namespace GestionProductosApi.Controllers
     public class BrandsController : Controller
     {
         static HttpClient http = new HttpClient();
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
         public BrandsController(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,7 +26,14 @@ namespace GestionProductosApi.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetString("CompanyID") is null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

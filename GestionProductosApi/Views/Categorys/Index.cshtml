@@ -1,0 +1,90 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModal4Label" aria-hidden="true">
+    <div class="modal-dialog modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title" id="exampleModal4Label">Agregar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalCategory">
+                <div class="row">
+                    <div class="col col-md-7">
+                        <label for="categoryName">Nombre</label>
+                        <input type="text" id="categoryName" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="categoryImage">Imagen</label>
+                        <input type="text" id="categoryImage" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-close">Cerrar</button>
+                <button type="button" class="btn btn-success" onclick="addCategory()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModal3Label">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalCategoryEdit">
+                <div class="row">
+                    <input type="text" id="categoryID" class="form-control">
+                    <div class="col col-md-7">
+                        <label for="categoryNameEdit">Nombre</label>
+                        <input type="text" id="categoryNameEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="categoryImageEdit">Imagen</label>
+                        <input type="text" id="categoryImageEdit" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-close">Cerrar</button>
+                <button type="button" class="btn btn-success" onclick="validar()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="grey-bg container-fluid">
+    <section id="minimal-statistics">
+        <div class="row">
+            <div class="col offset-9">
+                <button type="button" id="btnAddCategory" class="btn btn-success text-dark" data-toggle="modal" data-target="#modalAdd"><i class="fas fa-plus-circle"></i>Categoría</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col col-md-7 offset-2">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyCategorys"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/js/category.js"></script>

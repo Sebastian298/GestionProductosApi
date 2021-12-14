@@ -44,6 +44,19 @@ namespace GestionProductosApi.Controllers
             return Json(res);
         }
 
+        [HttpGet]
+        public IActionResult GetCategory(string Name)
+        {
+            var CompanyID = HttpContext.Session.GetString("CompanyID");
+            var url = "https://localhost:44326/api/categories/GetCategory";
+            dynamic jsonRequest = new JObject();
+            jsonRequest.CompanyID = CompanyID;
+            jsonRequest.Name = Name;
+            var content = new StringContent(jsonRequest.ToString(), Encoding.UTF8, "application/json");
+            var result = http.PostAsync(url, content).Result;
+            dynamic resultContent = result.Content.ReadAsStringAsync().Result.ToString();
+            return Json(resultContent.ToString());
+        }
         [HttpPost]
         public IActionResult CreateCategory([FromBody] Category objCategory)
         {

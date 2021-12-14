@@ -104,7 +104,6 @@ function editBrand() {
         }).then(response => response.json())
             .then(data => {
                 data = JSON.parse(data);
-                console.log(data)
                 if (data.Success == true) {
                     Swal.fire({
                         icon: 'success',

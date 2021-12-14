@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GestionProductosApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace GestionProductosApi.Controllers
@@ -15,7 +17,7 @@ namespace GestionProductosApi.Controllers
     {
         static HttpClient http = new HttpClient();
         private IConfiguration Configuration { get; }
-        public CategorysController()
+        public CategorysController(IConfiguration configuration)
         {
             Configuration = configuration;
             http.DefaultRequestHeaders.Clear();
@@ -40,6 +42,34 @@ namespace GestionProductosApi.Controllers
             dynamic res = JsonConvert.DeserializeObject(resultContent);
             res = JObject.Parse(res.ToString());
             return Json(res);
+        }
+
+        [HttpPost]
+        public IActionResult CreateCategory([FromBody] Category objCategory)
+        {
+            var url = "https://localhost:44326/api/categories/Create";
+            dynamic jsonRequest = new JObject();
+            jsonRequest.Name = objCategory.Name;
+            jsonRequest.Image = objCategory.Image;
+            jsonRequest.CompanyID = int.Parse(HttpContext.Session.GetString("CompanyID"));
+            var content = new StringContent(jsonRequest.ToString(), Encoding.UTF8, "application/json");
+            var result = http.PostAsync(url, content).Result;
+            dynamic resultContent = result.Content.ReadAsStringAsync().Result.ToString();
+            return Json(resultContent.ToString());
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory([FromBody] Category objCategory)
+        {
+            var url = "https://localhost:44326/api/categories/Update";
+            dynamic jsonRequest = new JObject();
+            jsonRequest.CategoryID = objCategory.CategoryID;
+            jsonRequest.Name = objCategory.Name;
+            jsonRequest.Image = objCategory.Image;
+            var content = new StringContent(jsonRequest.ToString(), Encoding.UTF8, "application/json");
+            var result = http.PutAsync(url, content).Result;
+            dynamic resultContent = result.Content.ReadAsStringAsync().Result.ToString();
+            return Json(resultContent.ToString());
         }
     }
 }

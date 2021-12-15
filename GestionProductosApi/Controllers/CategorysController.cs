@@ -36,7 +36,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult GetCategorys()
         {
             var CompanyID = HttpContext.Session.GetString("CompanyID");
-            var url = $"https://localhost:44326/api/categories/GetCategorys/{CompanyID}";
+            var url = $"http://sebastiantenorio-001-site1.ctempurl.com/api/categories/GetCategorys/{CompanyID}";
             var result = http.GetAsync(url).Result;
             var resultContent = result.Content.ReadAsStringAsync().Result;
             dynamic res = JsonConvert.DeserializeObject(resultContent);
@@ -48,7 +48,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult GetCategory(string Name)
         {
             var CompanyID = HttpContext.Session.GetString("CompanyID");
-            var url = "https://localhost:44326/api/categories/GetCategory";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/categories/GetCategory";
             dynamic jsonRequest = new JObject();
             jsonRequest.CompanyID = CompanyID;
             jsonRequest.Name = Name;
@@ -60,7 +60,7 @@ namespace GestionProductosApi.Controllers
         [HttpPost]
         public IActionResult CreateCategory([FromBody] Category objCategory)
         {
-            var url = "https://localhost:44326/api/categories/Create";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/categories/Create";
             dynamic jsonRequest = new JObject();
             jsonRequest.Name = objCategory.Name;
             jsonRequest.Image = objCategory.Image;
@@ -74,7 +74,7 @@ namespace GestionProductosApi.Controllers
         [HttpPost]
         public IActionResult UpdateCategory([FromBody] Category objCategory)
         {
-            var url = "https://localhost:44326/api/categories/Update";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/categories/Update";
             dynamic jsonRequest = new JObject();
             jsonRequest.CategoryID = objCategory.CategoryID;
             jsonRequest.Name = objCategory.Name;

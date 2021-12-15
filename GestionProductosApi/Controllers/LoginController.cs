@@ -33,7 +33,7 @@ namespace GestionProductosApi.Controllers
 
         public IActionResult ValidateLogin([FromBody] Company objCompany)
         {
-            var url = "https://localhost:44326/api/companies/Validate";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/companies/Validate";
             dynamic jsonRequest = new JObject();
             jsonRequest.Name = objCompany.Name;
             jsonRequest.Email = objCompany.Email;

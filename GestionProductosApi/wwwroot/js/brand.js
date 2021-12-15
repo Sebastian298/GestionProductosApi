@@ -14,7 +14,7 @@ function getBrands() {
         .then(data => {
             $('#example').DataTable().clear().destroy();
             bodyBrands.innerHTML = ``;
-            if (data.Title == 'Unauthorized') {
+            if (data.Success == false) {
                 Swal.fire({
                     icon: 'error',
                     text: `${data.Description}`

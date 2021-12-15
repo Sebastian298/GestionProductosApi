@@ -40,7 +40,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult GetBrands()
         {
             var CompanyID = HttpContext.Session.GetString("CompanyID");
-            var url = $"https://localhost:44326/api/brands/GetBrands/{CompanyID}";
+            var url = $"http://sebastiantenorio-001-site1.ctempurl.com/api/brands/GetBrands/{CompanyID}";
             var result = http.GetAsync(url).Result;
             var resultContent = result.Content.ReadAsStringAsync().Result;
             dynamic res = JsonConvert.DeserializeObject(resultContent);
@@ -52,7 +52,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult GetBrand(string Name)
         {
             var CompanyID = HttpContext.Session.GetString("CompanyID");
-            var url = "https://localhost:44326/api/brands/GetBrand";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/brands/GetBrand";
             dynamic jsonRequest = new JObject();
             jsonRequest.CompanyID = CompanyID;
             jsonRequest.Name = Name;
@@ -66,7 +66,7 @@ namespace GestionProductosApi.Controllers
         public IActionResult CreateBrand([FromBody] Brand objBrand)
         {
             var CompanyID = HttpContext.Session.GetString("CompanyID");
-            var url = "https://localhost:44326/api/brands/Create";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/brands/Create";
             dynamic jsonRequest = new JObject();
             jsonRequest.Name = objBrand.Name;
             jsonRequest.Image = objBrand.Image;
@@ -80,7 +80,7 @@ namespace GestionProductosApi.Controllers
         [HttpPost]
         public IActionResult UpdateBrand([FromBody] Brand objBrand)
         {
-            var url = "https://localhost:44326/api/brands/Update";
+            var url = "http://sebastiantenorio-001-site1.ctempurl.com/api/brands/Update";
             dynamic jsonRequest = new JObject();
             jsonRequest.BrandID = objBrand.BrandID;
             jsonRequest.Name = objBrand.Name;

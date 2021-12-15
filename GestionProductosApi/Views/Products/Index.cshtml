@@ -5,6 +5,59 @@
 }
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModal5Label" aria-hidden="true">
+    <div class="modal-dialog modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModal5Label">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalProduct">
+                <input type="text" id="productID" class="form-control">
+                <div class="row">
+                    <div class="col col-md-6">
+                        <label for="editproductName">Nombre</label>
+                        <input type="text" id="editProductName" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col col-md-5">
+                        <label for="editproductName">Marca</label>
+                        <input type="text" id="editProductBrand" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col col-md-5">
+                        <label for="editproductName">Categoria</label>
+                        <input type="text" id="editProductCategory" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col col-md-4">
+                        <label for="productPrice">Precio</label>
+                        <input type="number" id="editProductPrice" class="form-control">
+                    </div>
+                    <div class="col col-md-5">
+                        <label for="productSKU">SKU</label>
+                        <input type="text" id="editProductSku" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="productImage">Imagen</label>
+                        <input type="text" id="editProductImage" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-close">Cerrar</button>
+                <button type="button" class="btn btn-success" onclick="validar()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModal4Label" aria-hidden="true">
     <div class="modal-dialog modal-info" role="document">
         <div class="modal-content">
@@ -14,7 +67,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body" id="modalBrand">
+            <div class="modal-body" id="modalProduct">
                 <div class="row">
                     <div class="col col-md-6">
                         <label for="productName">Nombre</label>
@@ -22,19 +75,23 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col col-md-10">
+                    <div class="col col-md-8">
                         <label for="brandSelect">Marca</label>
+                        <br />
                         <select class="custom-select" id="brandSelect">
                         </select>
                     </div>
-                    <div class="col col-md-10 mt-2">
+                </div>
+                <div class="row mt-2">
+                    <div class="col col-md-8">
                         <label for="categorySelect">Categoria</label>
+                        <br />
                         <select class="custom-select" id="categorySelect">
                         </select>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col col-md-5">
+                    <div class="col col-md-4">
                         <label for="productPrice">Precio</label>
                         <input type="number" id="productPrice" class="form-control">
                     </div>
@@ -66,7 +123,7 @@
         </div>
         <div class="row mt-4">
             <div class="col col-md-7 offset-2">
-                <table id="tableProducts" class="display" style="width:100%">
+                <table id="tableProducts" class="display table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nombre</th>

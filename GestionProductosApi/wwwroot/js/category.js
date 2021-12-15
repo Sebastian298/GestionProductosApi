@@ -29,7 +29,7 @@ function getCategorys() {
                    <tr>
                    <td>${res.Name}</td>
                    <td><img src="${res.Image}" class="img-responsive" width="50" height="50"/></td>
-                   <td><a><i class="far fa-edit" data-toggle="modal" data-target="#modalEdit" onclick="writeData('${res.CategoryID}','${res.Name}','${res.Image}')"></i></a></td>
+                   <td><a><i class="icon-pencil" data-toggle="modal" data-target="#modalEdit" onclick="writeData('${res.CategoryID}','${res.Name}','${res.Image}')"></i></a></td>
                 `
                 })
                 bodyCategorys.innerHTML += html;

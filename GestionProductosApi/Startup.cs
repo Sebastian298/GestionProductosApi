@@ -13,6 +13,7 @@ namespace GestionProductosApi
 {
     public class Startup
     {
+        private readonly string _MyCors = "MyCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +24,13 @@ namespace GestionProductosApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => {
+                options.AddPolicy(name: _MyCors, builder =>
+                {
+                    builder.WithOrigins("https://kit.fontawesome.com/8b850b0e85.js")
+                    .AllowAnyHeader().AllowAnyMethod();
+                });
+            });
             services.AddSession();
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();

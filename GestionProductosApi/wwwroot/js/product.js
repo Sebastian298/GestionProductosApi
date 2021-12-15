@@ -117,7 +117,7 @@ function getProducts() {
                        <td>${res.Price}</td>
                        <td>${res.Sku}</td>
                        <td><img src="${res.Image}" class="img-responsive" width="50" height="50"/></td>
-                       <td><a><i class="far fa-edit" data-toggle="modal" data-target="#modalEdit" onclick="writeData('${res.ProductID}','${res.Name}','${res.Brand}','${res.Category}','${res.Sku}','${res.Image}','${res.Price}')"></i></a></td>
+                       <td><a><i class="icon-pencil" data-toggle="modal" data-target="#modalEdit" onclick="writeData('${res.ProductID}','${res.Name}','${res.Brand}','${res.Category}','${res.Sku}','${res.Image}','${res.Price}')"></i></a></td>
                    </tr>`
                 })
                 bodyProduct.innerHTML += html;
